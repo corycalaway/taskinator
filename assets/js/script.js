@@ -70,17 +70,7 @@ var createTaskEl = function (taskDataObj) {
   var taskActionsEl = createTaskActions(taskIdCounter);
   listItemEl.appendChild(taskActionsEl);
 
-  var taskStatus = taskDataObj.status;
-  
-  if (taskStatus === "to do") {
-    tasksToDoEl.appendChild(listItemEl);
-  } else if (taskStatus === "in progress") {
-    tasksInProgressEl.appendChild(listItemEl);
-  } else if (taskStatus === "completed") {
-    tasksCompletedEl.appendChild(listItemEl);
-  }
-
-  //tasksToDoEl.appendChild(listItemEl);
+  tasksToDoEl.appendChild(listItemEl);
   taskDataObj.id = taskIdCounter;
 
   tasks.push(taskDataObj);
@@ -306,6 +296,7 @@ var loadTasks = function () {
   savedTasks = JSON.parse(savedTasks);
 console.log(savedTasks)
   // loop through savedTasks array
+  
   for (var i = 0; i < savedTasks.length; i++) {
     // pass each task object into the `createTaskEl()` function
     createTaskEl(savedTasks[i]);
