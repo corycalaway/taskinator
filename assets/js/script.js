@@ -77,6 +77,7 @@ var createTaskEl = function (taskDataObj) {
   saveTasks();
   // increase task counter for next unique id
   taskIdCounter++;
+  return listItemEl;
 };
 
 var createTaskActions = function (taskId) {
@@ -299,7 +300,15 @@ console.log(savedTasks)
   
   for (var i = 0; i < savedTasks.length; i++) {
     // pass each task object into the `createTaskEl()` function
-    createTaskEl(savedTasks[i]);
+    var createdEl = createTaskEl(savedTasks[i]);
+    tasksToDoEl.removeChild(createdEl);
+    if (savedTasks[i].status === "to do") {
+      tasksToDoEl.appendChild(createdEl);
+    } else if (savedTasks[i].status === "in progress") {
+      tasksInProgressEl.appendChild(createdEl);
+    } else if (savedTasks[i].status === "completed") {
+      tasksCompletedEl.appendChild(createdEl);
+    }
   }
 };
 
